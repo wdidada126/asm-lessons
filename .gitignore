@@ -21,3 +21,5 @@
 # NASM output
 *.lst
 *.cod
+
+.idea
