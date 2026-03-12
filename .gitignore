@@ -1,2 +1,23 @@
+# Build outputs
 *.obj
+*.o
 *.exe
+*.out
+*.ilk
+*.pdb
+*.lib
+*.exp
+
+# Temporary files
+*.tmp
+*~
+*.swp
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# NASM output
+*.lst
+*.cod
