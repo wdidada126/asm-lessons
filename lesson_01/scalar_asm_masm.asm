@@ -12,28 +12,27 @@ scalar_example PROC
     inc rax         ; rax = rax + 1 = 4
     dec rax         ; rax = rax - 1 = 3
     imul rax, 5     ; rax = rax * 5 = 15
-    
+
     ; 将结果存储到指针指向的内存
     mov [rcx], rax
-    
+
     ret
 scalar_example ENDP
-
 
 ; void add_values_scalar(uint8_t *src, uint8_t *src2, int count)
 ; rcx = src, rdx = src2, r8 = count
 add_values_scalar PROC
     xor r9, r9      ; r9 = 0 (循环计数器)
-    
+
 add_loop:
     movzx eax, byte ptr [rcx + r9]    ; eax = src[r9] (零扩展)
     add al, byte ptr [rdx + r9]       ; eax = eax + src2[r9]
     mov byte ptr [rcx + r9], al        ; src[r9] = al
-    
+
     inc r9
     cmp r9, r8
     jl add_loop
-    
+
     ret
 add_values_scalar ENDP
 
@@ -42,20 +41,18 @@ add_values_scalar ENDP
 ; rcx = counter指针
 scalar_loop_example PROC
     mov rax, 3      ; 设置循环计数器为3
-    
+
 loop_label:
     dec rax         ; 计数器递减
-    
+
     ; 可以在这里添加其他操作
-    
+
     jg loop_label   ; 如果rax > 0则跳转回loop_label
-    
     ; 循环结束后将最终值写入
     mov [rcx], eax
-    
+
     ret
 scalar_loop_example ENDP
-
 
 ; uint64_t scalar_arithmetic(uint64_t a, uint64_t b, uint64_t c)
 ; rcx = a, rdx = b, r8 = c
@@ -64,7 +61,7 @@ scalar_arithmetic PROC
     ; 演示lea指令用于算术运算
     ; 计算: rax = a + b*8 + c
     lea rax, [rcx + 8*rdx + r8]
-    
+
     ret
 scalar_arithmetic ENDP
 
