@@ -107,31 +107,19 @@ multi_pointer_demo:
 ; rcx = src, rdx = dst, r8 = count
 global reverse_copy
 reverse_copy:
-    ; 保存指针
+    ; 保存原始src指针
     push rcx
-    push rdx
     
-    ; r8是count，保存它
-    push r8
-    
-    ; 指向末尾 (最后一个字节的位置)
-    add rcx, r8
-    dec rcx
-    add rdx, r8
-    dec rdx
-    
-    ; 用r8作为循环计数器，从count-1开始
-    dec r8
+    ; rcx = src + count - 1 (指向最后一个元素)
+    lea rcx, [rcx + r8 - 1]
     
 .loop:
     movzx eax, byte [rcx]
     mov [rdx], al
+    inc rdx
     dec rcx
-    dec rdx
     dec r8
-    jns .loop
+    jnz .loop
     
-    pop r8
-    pop rdx
     pop rcx
     ret

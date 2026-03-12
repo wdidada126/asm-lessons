@@ -24,14 +24,6 @@ void print_bytes(const char *name, uint8_t *data, int count) {
     printf("\n");
 }
 
-void print_words(const char *name, uint16_t *data, int count) {
-    printf("%s: ", name);
-    for (int i = 0; i < count && i < 16; i++) {
-        printf("%d ", data[i]);
-    }
-    printf("\n");
-}
-
 int main() {
     printf("=== Lesson 3: Pointer Offset, Alignment, Range Expand, Shuffle ===\n\n");
 
@@ -46,13 +38,13 @@ int main() {
     print_bytes("   result", dst1, 16);
     printf("\n");
 
-    // Test 2: Reverse copy
+    // Test 2: Reverse copy (从后往前复制)
     printf("2. reverse_copy\n");
-    uint8_t rev_src[] = {1, 2, 3, 4, 5, 6, 7, 8};
-    uint8_t rev_dst[8] = {0};
-    print_bytes("   src", rev_src, 8);
-    reverse_copy(rev_src, rev_dst, 8);
-    print_bytes("   dst", rev_dst, 8);
+    uint8_t rev_src[16] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16};
+    uint8_t rev_dst[16] = {0};
+    print_bytes("   src", rev_src, 16);
+    reverse_copy(rev_src, rev_dst, 16);
+    print_bytes("   dst", rev_dst, 16);
     printf("\n");
 
     // Test 3: Alignment detection
