@@ -1,0 +1,45 @@
+name: Build (Windows)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install NASM
+        uses: rl glew/install-nasm-action@v1
+
+      - name: Install MinGW-w64
+        uses: egor-tensin/setup-mingw@v2
+
+      - name: Build lesson_01
+        working-directory: lesson_01
+        run: cmd /c build.bat
+
+      - name: Run lesson_01
+        working-directory: lesson_01
+        run: lesson01.exe
+
+      - name: Build lesson_02
+        working-directory: lesson_02
+        run: cmd /c build.bat
+
+      - name: Run lesson_02
+        working-directory: lesson_02
+        run: lesson02.exe
+
+      - name: Build lesson_03
+        working-directory: lesson_03
+        run: cmd /c build.bat
+
+      - name: Run lesson_03
+        working-directory: lesson_03
+        run: lesson03.exe

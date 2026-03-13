@@ -1,0 +1,48 @@
+name: Build (macOS)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install NASM
+        run: brew install nasm
+
+      - name: Build lesson_01
+        working-directory: lesson_01
+        run: |
+          chmod +x build_mac.sh
+          ./build_mac.sh
+
+      - name: Run lesson_01
+        working-directory: lesson_01
+        run: ./lesson01
+
+      - name: Build lesson_02
+        working-directory: lesson_02
+        run: |
+          chmod +x build_mac.sh
+          ./build_mac.sh
+
+      - name: Run lesson_02
+        working-directory: lesson_02
+        run: ./lesson02
+
+      - name: Build lesson_03
+        working-directory: lesson_03
+        run: |
+          chmod +x build_mac.sh
+          ./build_mac.sh
+
+      - name: Run lesson_03
+        working-directory: lesson_03
+        run: ./lesson03
